@@ -1,0 +1,241 @@
+# Metadata
+
+## Project: Monte Carlo Simulator
+## Author: Sara Koochagian
+
+
+# Synopsis
+
+## Description
+Montecarlo is a Python project to simulate various dice games. The project allows the user to create dice, play games with those dice, and analyze the game results.
+
+## Installation and Import of montecarlo
+
+PUT THINGS FROM GITHUB HERE
+
+From there, install the montecarlo.py file. This python file has all classes and code needed to utilize the simulator. Install the file by using pip.
+
+```python
+pip install montecarlo
+```
+The contents of the file can then be imported into a new file. To import the file, in a new Python document, from the file import the classes.
+
+```python
+from montecarlo import *
+```
+Using the star will import all classes from the montecarlo file. Once imported, all classes can be utilized.
+
+## Create the Dice
+
+In order to create a dice, the Die class needs an input of a list of face values. The values in the list have to be strings or integers. Here are some examples of some face value lists:
+
+```python
+faces = [1,2,3,4,5,6]
+faces2 = ['a',4,0,'monty',33]
+faces3 = ['a','f','e','b','y']
+```
+Once the face values are created, the list can be inserted into the Die class command.To use this class, set a variable to the Die class function with the list as an input.  A list can be inserted into the class or a variable set to a list can be inserted. For the previous dice faces, the first two will have the variables as an input, and the last list will physically be inserted into the function.
+
+```python
+dice1 = Die(faces)
+dice2 = Die(faces2)
+dice3 = Die(['a','f','e','b','y'])
+```
+This creates the dice with the values from each list, and inserts them into a private dataframe with respective weights. For each element in the list, the weights defaults to 1.0. In order to change the weight of a face value, the change_weights function can do that.
+
+The function change_weights has two inputs. The first input is the face value that will have the altered weight. The input is either the string of the face if that element is a string, or the face number if the element is an integer. The second input is the new weight the face will have. This value must be a float, but if an integer is inputted it will change it to a float. An example of using this function with dice1 as the variable follows.
+```python
+dice1.change_weights(3,3.0)
+```
+The function will check if the face value is in the list of faces, and will also check if the weight is a numerical value. If one of these requirements are not met, the function will produce an error message. If all things are done correctly, the new weight will appear in the dataframe.
+
+In order to see the dice, the show_dice function will return the private dataframe with the faces as the index and one column of the weights for each face. This function requires no input, and is shown below.
+
+```python
+dice1.show_dice()
+```
+Now that a dice is created with the desired weights, then the dice can be rolled. The dice_roll function takes in an integer for the number of rolls the dice will be rolled. The function will then output a list of the face values that were rolled from the dice. The function takes into account the weights of  This example shows dice1 being rolled 100 times.
+```python 
+dice1.dice_roll(100)
+```
+## Play the Game
+Once the dice is created, the dice can be used to play the game in the Monte Carlo Simulator. The Game class uses a list of dice as an input, where the dice are created from the Die class. The list must have a minimum of one dice in the list, and all dice must have the same number of faces. For example, a list could use two six sided dice, but could not use one 5 sided dice and one 2 sided dice. It is helpful to create variables for the dice, add them to a list, and input the list into the Game class. Below is an example of how to begin the Game class.
+
+```python
+die1 = Die([1,2,3,4,5,6])
+die2 = Die([4,5,6,7,8,9])
+die_list = [die1,die2]
+die_game = Game(die_list)
+```
+If changes need to be made to the weights of a face, the change needs to be made before inserting the list of dice into the game class. For example, changing the weight of face 3 in die 1, the function should be ran after making the dice. If the weight change happened after the die_game variable was created, the weight would not change when the game is being played. An example of how to change the weights for a die before being entered into the Game class is below.
+```python
+die1 = Die([1,2,3,4,5,6])
+die1.change_weights(3,2.0)
+die2 = Die([4,5,6,7,8,9])
+die_list = [die1,die2]
+die_game = Game(die_list)
+```
+To play the game, the play_game function needs an input of the number of rolls each dice will be rolled. The function will then store the results into a private dataframe. The function uses the play_game function from the Die class to create the list of rolled faces. From there, the list will be added to a column in the dataframe that is labeled as the number dice that was rolled. This function does not return the dataframe, but instead stores the dataframe into the class. In order to see the dataframe results, the show_results funciton can be used. 
+
+This function formats the dataframe into either a 'Wide' or 'Narrow' dataframe. The 'Wide' format, also the default format, will provide one index of the roll numbers, and the columns as each dice with the elements being the respective results. With the example above, the 'Wide' format would have an index for the 100 rolls, and only two columns for each dice. The 'Narrow' format has two indicies of roll number and dice number, with the column being the face value results. The face result will beside the dice index to show which result came from what dice.
+
+If anything other than 'Wide' and 'Narrow' are inserted into this function, an error message will occur. Below is an example of how to play the game with 100 rolls, and then make the dataframe in the narrow format.
+
+```python
+dice_game.play_game(100)
+dice_game.show_results('Narrow')
+```
+
+## Analyze the Game
+Once the game has been played, the results can be observed and calculations can be made about the results. 
+
+# API
+
+## Die class:
+
+    Purpose: the purpose of this class is to create a dice by defining face values and their respective weights.
+
+init 
+        Purpose: The initializing of default parameters and inputs for the class.
+        
+        Input
+        --------
+        face_list: A list of the dice faces for creating the dice. The values in the list can be strings or integers.
+    
+        Default parameters
+        ----------------------
+        Weight: A default list of weights where the weight is 1.0 for all values in face_list.
+        df: A private dataframe that will hold all the faces and weights of the dice.
+
+
+
+change weight
+
+        Purpose: To change the weight of a particular face in the face_list
+
+        Input
+        --------
+        face_value: the face value that will have a new weight assigned in weight
+        weight_value: the new weight of the face. This value must be a numerical value, either float or integer
+        
+        Output
+        ---------
+        There is no output.
+
+dice_roll
+
+        Purpose: This function rolls the dice and produces the results by adding them to a list
+        
+        Input
+        --------
+        rolls: the number of times the dice will be rolled
+        
+        Output
+        --------- 
+        result: A list of the results that were rolled
+
+show dice
+
+        Purpose: This function shows the dataframe of the faces and the weights
+
+        Input
+        -------
+        None
+        
+        Output 
+        --------
+        df: The dataframe with the face values as the index and the weights as the column
+
+## Game class
+
+    Purpose: The purpose of this class is to produce a game of rolling one or more dice.
+
+init
+  
+    Purpose: Initializes the list of dice.
+
+        Input
+        -------
+        die_list: A list of die,where the values are using the Die class. There must be a minimum of one die in the list in order to be used.
+
+        Output
+        --------
+        There is no output.
+
+play_game
+
+        Purpose: This function plays a game where a dice is rolled. Each dice that is in the list is rolled a certain number of times. 
+        The results are put into a private dataframe.
+
+        Input
+        -------
+        rolls: The number of time each dice will be rolled. The value must be an integer, and at least one.
+        
+        Output 
+        ---------
+        _gamedf: A private dataframe. The roll numbers are the index of the dataframe and the dice numbers are the columns. 
+        The columns have the resulting face values from the game as the elements in the columns.
+        
+
+show_results
+
+        Purpose: This function provides an option to style the previous dataframe in a certain style. 
+
+        Input
+        -------
+        type: A string of how the dataframe will be formatted. The two options are 'Wide' or 'Narrow'. 
+            - The wide format is the default format that the dataframe is normally formatted in.
+            - The narrow format will format the dataframe with the roll number and dice number as the two indicies, with the one 
+              column being the faces.
+        
+        Output 
+        -------
+        _gamedf: The result is the dataframe in the format that was put into the function.
+
+## Analyzer class
+
+    Purpose: Analyzing the results of the Game class.
+
+init
+
+      Purpose: Initializing the input of the class function.
+
+      Input
+      -------
+      game: A game that is 
+
+jackpot
+
+      Purpose: This function shows how many times the dice produced the same face on the same roll 
+      
+      Input 
+      --------
+      There is no input
+
+      Output
+      ---------
+      total: The number of times the dice produce the same face on the same roll.
+
+combo
+
+        Purpose: Calculates the number of times a combination of results appears through the game.
+
+        Input 
+        --------
+        There is no input.
+
+        Output 
+        ---------
+        combodf: A series with the rows as dice result combinations, and the column as the number of times that combination was rolled.
+
+face count
+
+        Purpose: Stores the count of face combinations rolled into a dataframe.
+
+        Input 
+        --------
+        There is no input.
+
+        Output
+        --------
+        There is no output.
