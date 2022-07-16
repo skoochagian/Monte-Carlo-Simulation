@@ -11,17 +11,17 @@ Montecarlo is a Python project to simulate various dice games. The project allow
 
 ## Installation and Import of montecarlo
 
-PUT THINGS FROM GITHUB HERE
+In order to get the repository of the Monte Carlo Simulator, clone the repository from github and direct the repository in the desired location.
 
-From there, install the montecarlo.py file. This python file has all classes and code needed to utilize the simulator. Install the file by using pip.
+From there, install the montecarlopackage directory into python. This directory has the python file with all of the classes needed to utilize the simulator. Install the package by using pip install.
 
 ```python
-pip install montecarlo
+!pip install montecarlopackage
 ```
-The contents of the file can then be imported into a new file. To import the file, in a new Python document, from the file import the classes.
+The contents of the package can then be imported into a new python file. To import the file, in a new Python document, from the file import the classes.
 
 ```python
-from montecarlo import *
+from montecarlopackage.montecarlo import *
 ```
 Using the star will import all classes from the montecarlo file. Once imported, all classes can be utilized.
 
