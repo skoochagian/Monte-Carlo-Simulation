@@ -87,155 +87,174 @@ dice_game.show_results('Narrow')
 ```
 
 ## Analyze the Game
-Once the game has been played, the results can be observed and calculations can be made about the results. 
+Once the game has been played, the results can be observed and calculations can be made with the results. The Analyzer class takes an input of a game, and uses those Game class dataframes to analyze roll results with each dice. By using the previous game example, the function can be called by inputting the game into the Analyzer function.
 
+```python
+dice_game = Game(die_list)
+analyzer = Analyzer(dice_game)
+```
+Once the analyzer class is called, there is the ability to use the roll dataframes from the Game class. One type of analysis of the dataframes is about the results in a particular roll. With each roll, there is a way to calculate if all dice produced the same face value in one roll. The jackpot function is able to go through the results of a row and count the number of unique values in the row. By doing this, the function then counts the number of times there is only one unique result appears in a roll. This function does not take any inputs, and outputs the total number of times the entire roll is one face value. 
+
+```python
+analyzer.jackpot()
+```
+After finding the jackpot rolls, there is another function that counts the number of combinations that are rolled by the dice. The combo function takes no input, and stores a dataframe with the number of times a combination of faces is rolled. There is no output for this function so in order to see the dataframe, it needs to be called for. 
+```python
+analyzer.combo()
+```
+Another way to analyze the roll results is to count how many times an individual face is rolled in each round of the game. The show_face_counts function takes no input, and stores a public dataframe that counts how many times a face is rolled in around of the game. For the faces that are not rolled, they receive a zero. The counts are applied to all rounds of dice rolling.
+
+```python
+analyzer.show_face_counts()
+```
 # API
 
-## Die class:
+# Die class
+Purpose: the purpose of this class is to create a dice by defining face values and their respective weights.
 
-    Purpose: the purpose of this class is to create a dice by defining face values and their respective weights.
+## init
+----- 
+### Purpose
 
-init 
-        Purpose: The initializing of default parameters and inputs for the class.
+The initializing of default parameters and inputs for the class.
         
-        Input
-        --------
-        face_list: A list of the dice faces for creating the dice. The values in the list can be strings or integers.
+### Input
+       
+face_list: A list of the dice faces for creating the dice. The values in the list can be strings or integers.
     
-        Default parameters
-        ----------------------
-        Weight: A default list of weights where the weight is 1.0 for all values in face_list.
-        df: A private dataframe that will hold all the faces and weights of the dice.
+### Default parameters
+Weight: A default list of weights where the weight is 1.0 for all values in face_list.
+
+df: A private dataframe that will hold all the faces and weights of the dice.
+
+### Output
+There is no output.
 
 
+## change_weights
+---
+Purpose: To change the weight of a particular face in the face_list
 
-change weight
-
-        Purpose: To change the weight of a particular face in the face_list
-
-        Input
-        --------
-        face_value: the face value that will have a new weight assigned in weight
-        weight_value: the new weight of the face. This value must be a numerical value, either float or integer
+### Input
         
-        Output
-        ---------
-        There is no output.
+face_value: the face value that will have a new weight assigned in weight
 
-dice_roll
-
-        Purpose: This function rolls the dice and produces the results by adding them to a list
+weight_value: the new weight of the face. This value must be a numerical value, either float or integer
         
-        Input
-        --------
-        rolls: the number of times the dice will be rolled
+### Output
+
+There is no output.
+
+## dice_roll
+---
+### Purpose
+This function rolls the dice and produces the results by adding them to a list
         
-        Output
-        --------- 
-        result: A list of the results that were rolled
+### Input
 
-show dice
-
-        Purpose: This function shows the dataframe of the faces and the weights
-
-        Input
-        -------
-        None
+rolls: the number of times the dice will be rolled
         
-        Output 
-        --------
-        df: The dataframe with the face values as the index and the weights as the column
+### Output
+         
+result: A list of the results that were rolled
 
-## Game class
+## show dice
+---
+### Purpose
+This function shows the dataframe of the faces and the weights
 
-    Purpose: The purpose of this class is to produce a game of rolling one or more dice.
-
-init
-  
-    Purpose: Initializes the list of dice.
-
-        Input
-        -------
-        die_list: A list of die,where the values are using the Die class. There must be a minimum of one die in the list in order to be used.
-
-        Output
-        --------
-        There is no output.
-
-play_game
-
-        Purpose: This function plays a game where a dice is rolled. Each dice that is in the list is rolled a certain number of times. 
-        The results are put into a private dataframe.
-
-        Input
-        -------
-        rolls: The number of time each dice will be rolled. The value must be an integer, and at least one.
+### Input
+There is no input.
         
-        Output 
-        ---------
-        _gamedf: A private dataframe. The roll numbers are the index of the dataframe and the dice numbers are the columns. 
-        The columns have the resulting face values from the game as the elements in the columns.
+### Output 
         
+df: The dataframe with the face values as the index and the weights as the column
 
-show_results
+# Game class
 
-        Purpose: This function provides an option to style the previous dataframe in a certain style. 
+Purpose: The purpose of this class is to produce a game of rolling one or more dice.
 
-        Input
-        -------
-        type: A string of how the dataframe will be formatted. The two options are 'Wide' or 'Narrow'. 
-            - The wide format is the default format that the dataframe is normally formatted in.
-            - The narrow format will format the dataframe with the roll number and dice number as the two indicies, with the one 
-              column being the faces.
+## init
+---  
+### Purpose
+Initializes the list of dice.
+
+### Input
+die_list: A list of die,where the values are using the Die class. There must be a minimum of one die in the list in order to be used.
+
+### Output
+
+There is no output.
+
+## play_game
+
+### Purpose 
+This function plays a game where a dice is rolled. Each dice that is in the list is rolled a certain number of times. The results are put into a private dataframe.
+
+### Input
         
-        Output 
-        -------
-        _gamedf: The result is the dataframe in the format that was put into the function.
+rolls: The number of time each dice will be rolled. The value must be an integer, and at least one.
+        
+### Output 
+        
+_gamedf: A private dataframe. The roll numbers are the index of the dataframe and the dice numbers are the columns. The columns have the resulting face values from the game as the elements in the columns.
+        
+## show_results
 
-## Analyzer class
+Purpose: 
+This function provides an option to style the previous dataframe in a certain style. 
 
-    Purpose: Analyzing the results of the Game class.
+### Input
+type: A string of how the dataframe will be formatted. The two options are 'Wide' or 'Narrow'.
 
-init
+- The wide format is the default format that the dataframe is normally formatted in.
+- The narrow format will format the dataframe with the roll number and dice number as the two indicies, with the one column being the faces.
+        
+### Output 
+_gamedf: The result is the dataframe in the format that was put into the function.
 
-      Purpose: Initializing the input of the class function.
+# Analyzer class
+Purpose: Analyzing the results of the Game class.
 
-      Input
-      -------
-      game: A game that is 
+## init
 
-jackpot
+### Purpose
+Initializing the input of the class function.
 
-      Purpose: This function shows how many times the dice produced the same face on the same roll 
+### Input
+game: A game using the Game function. 
+
+## jackpot
+---
+### Purpose
+This function shows how many times the dice produced the same face on the same roll 
       
-      Input 
-      --------
-      There is no input
+### Input 
+There is no input.
 
-      Output
-      ---------
-      total: The number of times the dice produce the same face on the same roll.
+### Output
+total: The number of times the dice produce the same face on the same roll.
 
-combo
+## combo
+----
+### Purpose
+Calculates the number of times a combination of results appears through the game.
 
-        Purpose: Calculates the number of times a combination of results appears through the game.
+### Input 
+There is no input.
 
-        Input 
-        --------
-        There is no input.
+### Output 
+There is no output.
 
-        Output 
-        ---------
-        combodf: A series with the rows as dice result combinations, and the column as the number of times that combination was rolled.
+## face count
+----
+### Purpose
 
-face count
+Stores the count of face combinations rolled into a dataframe.
 
-        Purpose: Stores the count of face combinations rolled into a dataframe.
+### Input 
+There is no input.
 
-        Input 
-        --------
-        There is no input.
+### Output
 
-        Output
-        --------
-        There is no output.
+There is no output.

@@ -155,7 +155,7 @@ class Analyzer():
 
       Input
       -------
-      game: A game that is 
+      game: A game using the Game function. 
       """
       self.game = game
      
@@ -192,8 +192,7 @@ class Analyzer():
 
         Output 
         ---------
-        combodf: A series with the rows as dice result combinations, and the column as the number of times that combination was rolled.
-        
+        There is no output.        
         """
         self.result = self.game.show_results()
         self.combodf = self.result.apply(lambda x: pd.Series(sorted(x)), 1).value_counts().to_frame('n')
