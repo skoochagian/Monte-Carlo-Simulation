@@ -1,3 +1,14 @@
+Metadata-Version: 2.1
+Name: montecarlopackage
+Version: 0.1.0
+Summary: A package that simulates Monte Carlo
+Home-page: https://github.com/skoochagian/FINALPROJECT
+Author: Sara Koochagian
+Author-email: sk2hh@virginia.edu
+License: MIT
+Platform: UNKNOWN
+License-File: LICENSE
+
 # Metadata
 
 ## Project: Monte Carlo Simulator
@@ -275,3 +286,4 @@ montecarlo.py
 directory.py
 
 setup.py
+

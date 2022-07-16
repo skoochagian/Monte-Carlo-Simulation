@@ -1,7 +1,6 @@
-#from cgi import test
-from montecarlo import Die
-from montecarlo import Game
-from montecarlo import Analyzer
+from montecarlopackage.montecarlo import Die
+from montecarlopackage.montecarlo import Game
+from montecarlopackage.montecarlo import Analyzer
 import unittest
 import pandas as pd
 

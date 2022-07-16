@@ -6,11 +6,10 @@ setup(
  author = 'Sara Koochagian',
  author_email = 'sk2hh@virginia.edu',
  packages = ['montecarlopackage'],
- scripts = ['bin/script1','bin/script2'],
  url = 'https://github.com/skoochagian/FINALPROJECT',
- license = 'LICENSE.txt',
+ license = 'MIT',
  description = 'A package that simulates Monte Carlo',
- long_description = open('README.txt').read(),
+ long_description = open('README.md').read(),
  install_requires = [
  "Django >= 1.1.1",
  "pytest",
