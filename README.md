@@ -258,3 +258,18 @@ There is no input.
 ### Output
 
 There is no output.
+
+# Manifest
+FinalProjectSubmissionTemplate.ipynb
+
+LICENSE
+
+montecarlo_demo.ipynb
+
+montecarlo_tes_result.txt
+
+montecarlo_test.py
+
+montecarlo.py
+
+README.md
